@@ -18,7 +18,7 @@ spec:
       - name: healthcare-eta-container
         image: whitehouse23/insurance-eta-app
         ports:
-        - containerPort: 8082  # Changed from 8082 to 8083
+        - containerPort: 8082  # This should match the service targetPort
 ---
 apiVersion: v1
 kind: Service
@@ -31,6 +31,6 @@ spec:
     app: insurance-eta-app
   type: NodePort
   ports:
-  - nodePort: 32031  # Changed from 31030 to 32030
-    port: 8082       # Changed from 8082 to 8083
-    targetPort: 8082 # Changed from 8082 to 8083
+  - nodePort: 32031  # Valid NodePort range
+    port: 8082       # Service port
+    targetPort: 8082 # Must match containerPort in deployment
